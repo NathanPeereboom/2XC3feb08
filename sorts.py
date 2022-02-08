@@ -1,7 +1,7 @@
 from lab4 import *
 import random
 
-def mergesort_three(L):
+def mergesort_three(L): #Still needs thorough testing
     
     if len(L) <= 1:
         return 
@@ -25,14 +25,53 @@ def merge_three(left, middle, right):
     i = j = k = 0
 
     while i < len(left) or j < len(middle) or k < len(right):
-        #incomplete. needs to be fixed
+        #if left done
         if i >= len(left):
-            L.append(right[j])
-            j += 1
-        elif j >= len(right):
-            L.append(left[i])
-            i += 1
-        else: #sort. this part is complete
+            if j >= len(middle):
+                L.append(right[k])
+                k += 1
+            elif k >= len(right):
+                L.append(middle[j])
+                j += 1
+            else:
+                if middle[j] <= right[k]:
+                    L.append(middle[j])
+                    j += 1
+                else:
+                    L.append(right[k])
+                    k += 1
+        #if middle done
+        if j >= len(middle):
+            if i >= len(left):
+                L.append(right[k])
+                k += 1
+            elif k >= len(right):
+                L.append(left[i])
+                i += 1
+            else:
+                if left[i] <= right[k]:
+                    L.append(left[i])
+                    i += 1
+                else:
+                    L.append(right[k])
+                    k += 1
+        #if right done
+        if k >= len(right):
+            if j >= len(middle):
+                L.append(left[i])
+                i += 1
+            elif i >= len(left):
+                L.append(middle[j])
+                j += 1
+            else:
+                if middle[j] <= left[i]:
+                    L.append(middle[j])
+                    j += 1
+                else:
+                    L.append(right[i])
+                    i += 1
+        #if none done
+        else: #sort
             if left[i] <= middle[j] and left[i] <= right[k]:
                 L.append(left[i])
                 i += 1
