@@ -41,7 +41,7 @@ def merge_three(left, middle, right):
                     L.append(right[k])
                     k += 1
         #if middle done
-        if j >= len(middle):
+        elif j >= len(middle):
             if i >= len(left):
                 L.append(right[k])
                 k += 1
@@ -56,7 +56,7 @@ def merge_three(left, middle, right):
                     L.append(right[k])
                     k += 1
         #if right done
-        if k >= len(right):
+        elif k >= len(right):
             if j >= len(middle):
                 L.append(left[i])
                 i += 1
